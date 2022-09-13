@@ -64,11 +64,17 @@ public class SpellService {
 	}
 	
 	public List<Spell> getByLevel(int level) {
-		return spellRepository.findSpellByLevel(level);
+		List<Spell> spells = spellRepository.findSpellByLevel(level);
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		return nameOrder;
 	}
 
 	public List<Spell> getBySchool(String school) {
-		return spellRepository.findSpellBySchool(school);
+		List<Spell> spells = spellRepository.findSpellBySchool(school);
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		return nameOrder;
 	}
 
 	public Spell create(Spell spell) {
