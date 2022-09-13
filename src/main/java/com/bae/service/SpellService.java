@@ -35,7 +35,9 @@ public class SpellService {
 
 	public List<Spell> getAllByLevel() {
 		List<Spell> spells = spellRepository.findAll();
-		List<Spell> levelOrder = spells.stream().sorted(Comparator.comparing(Spell::getLevel))
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		List<Spell> levelOrder = nameOrder.stream().sorted(Comparator.comparing(Spell::getLevel))
 				.collect(Collectors.toList());
 		return levelOrder;
 	}
