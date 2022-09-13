@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.bae.service.SpellService;
 import com.bae.entities.Spell;
@@ -98,8 +99,8 @@ public class SpellController {
 		return new ResponseEntity<Spell>(updatedSpell, headers, HttpStatus.ACCEPTED);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Spell> updateSpell(@PathVariable("id") Long id, @Valid @RequestBody Spell spell) {
+	@PutMapping
+	public ResponseEntity<Spell> updateSpell(@RequestParam(value="id") Long id, @Valid @RequestBody Spell spell) {
 		Spell updatedSpell = spellService.updateById(id, spell);
 
 		HttpHeaders headers = new HttpHeaders();
@@ -114,8 +115,8 @@ public class SpellController {
 		return ResponseEntity.accepted().build();
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteSpell(@PathVariable("id") Long id) {
+	@DeleteMapping
+	public ResponseEntity<?> deleteSpell(@RequestParam(value="id") Long id) {
 		spellService.deleteById(id);
 		return ResponseEntity.accepted().build();
 	}
