@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.bae.entities.Spell;
 import com.bae.repos.SpellRepository;
-//import com.bae.exceptions.SpellNotFoundException;
+import com.bae.exceptions.SpellNotFoundException;
 
 @Service
 public class SpellService {
 	
 	private SpellRepository spellRepository;
-//	private SpellService spellService;
+	private SpellService spellService;
 
 	@Autowired
 	public SpellService(SpellRepository spellRepository) {
@@ -47,17 +47,17 @@ public class SpellService {
 		return schoolOrder;
 	}
 
-//	public Spell getById(Long id) {
-//		return spellRepository.findById(id).orElseThrow(() -> {
-//			return new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
-//		});
-//	}
+	public Spell getById(Long id) {
+		return spellRepository.findById(id).orElseThrow(() -> {
+			return new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
+		});
+	}
 
-//	public Spell getByName(String name) {
-//		return spellRepository.findSpellByName(name).orElseThrow(() -> {
-//			return new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
-//		});
-//	}
+	public Spell getByName(String name) {
+		return spellRepository.findSpellByName(name).orElseThrow(() -> {
+			return new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
+		});
+	}
 	
 	public List<Spell> getByLevel(int level) {
 		return spellRepository.findSpellByLevel(level);
@@ -72,49 +72,49 @@ public class SpellService {
 		return savedUser;
 	}
 	
-//	public Spell updateByName(String name, Spell spell) {
-//		Spell updatedSpell = spellService.getByName(name);
-//		Long id = updatedSpell.getId();
-//		
-//		if (spellRepository.existsById(id)) {
-//			Spell spellInDb = updatedSpell;
-//			spellInDb.setName(spell.getName());
-//			spellInDb.setLevel(spell.getLevel());
-//			spellInDb.setSchool(spell.getSchool());
-//			return spellRepository.save(spellInDb);
-//		} else {
-//			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
-//		}
-//	}
-//	
-//	public Spell updateById(Long id, Spell spell) {
-//		if (spellRepository.existsById(id)) {
-//			Spell spellInDb = spellService.getById(id);
-//			spellInDb.setLevel(spell.getLevel());
-//			spellInDb.setSchool(spell.getSchool());
-//			return spellRepository.save(spellInDb);
-//		} else {
-//			throw new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
-//		}
-//	}
-//	
-//	public void deleteByName(String name) {
-//		Spell updatedSpell = spellService.getByName(name);
-//		Long id = updatedSpell.getId();
-//		
-//		if (spellRepository.existsById(id)) {
-//			spellRepository.deleteById(id);
-//		} else {
-//			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
-//		}
-//	}
-//	
-//	public void deleteById(Long id) {
-//		if (spellRepository.existsById(id)) {
-//			spellRepository.deleteById(id);
-//		} else {
-//			throw new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
-//		}
-//	}
-//
+	public Spell updateByName(String name, Spell spell) {
+		Spell updatedSpell = spellService.getByName(name);
+		Long id = updatedSpell.getId();
+		
+		if (spellRepository.existsById(id)) {
+			Spell spellInDb = updatedSpell;
+			spellInDb.setName(spell.getName());
+			spellInDb.setLevel(spell.getLevel());
+			spellInDb.setSchool(spell.getSchool());
+			return spellRepository.save(spellInDb);
+		} else {
+			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
+		}
+	}
+	
+	public Spell updateById(Long id, Spell spell) {
+		if (spellRepository.existsById(id)) {
+			Spell spellInDb = spellService.getById(id);
+			spellInDb.setLevel(spell.getLevel());
+			spellInDb.setSchool(spell.getSchool());
+			return spellRepository.save(spellInDb);
+		} else {
+			throw new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
+		}
+	}
+	
+	public void deleteByName(String name) {
+		Spell updatedSpell = spellService.getByName(name);
+		Long id = updatedSpell.getId();
+		
+		if (spellRepository.existsById(id)) {
+			spellRepository.deleteById(id);
+		} else {
+			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
+		}
+	}
+	
+	public void deleteById(Long id) {
+		if (spellRepository.existsById(id)) {
+			spellRepository.deleteById(id);
+		} else {
+			throw new SpellNotFoundException("Spell with ID '" + id + "' cannot be found");
+		}
+	}
+
 }
