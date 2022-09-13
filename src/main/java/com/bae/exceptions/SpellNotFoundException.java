@@ -10,4 +10,8 @@ public class SpellNotFoundException extends EntityNotFoundException {
 		super();
 	}
 
+	public SpellNotFoundException(String message) {
+		super(message);
+	}
+
 }
