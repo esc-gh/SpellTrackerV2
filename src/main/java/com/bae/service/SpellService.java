@@ -44,7 +44,9 @@ public class SpellService {
 
 	public List<Spell> getAllBySchool() {
 		List<Spell> spells = spellRepository.findAll();
-		List<Spell> schoolOrder = spells.stream().sorted(Comparator.comparing(Spell::getSchool))
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		List<Spell> schoolOrder = nameOrder.stream().sorted(Comparator.comparing(Spell::getSchool))
 				.collect(Collectors.toList());
 		return schoolOrder;
 	}
