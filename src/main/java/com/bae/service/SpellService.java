@@ -35,14 +35,18 @@ public class SpellService {
 
 	public List<Spell> getAllByLevel() {
 		List<Spell> spells = spellRepository.findAll();
-		List<Spell> levelOrder = spells.stream().sorted(Comparator.comparing(Spell::getLevel))
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		List<Spell> levelOrder = nameOrder.stream().sorted(Comparator.comparing(Spell::getLevel))
 				.collect(Collectors.toList());
 		return levelOrder;
 	}
 
 	public List<Spell> getAllBySchool() {
 		List<Spell> spells = spellRepository.findAll();
-		List<Spell> schoolOrder = spells.stream().sorted(Comparator.comparing(Spell::getSchool))
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		List<Spell> schoolOrder = nameOrder.stream().sorted(Comparator.comparing(Spell::getSchool))
 				.collect(Collectors.toList());
 		return schoolOrder;
 	}
@@ -60,11 +64,17 @@ public class SpellService {
 	}
 	
 	public List<Spell> getByLevel(int level) {
-		return spellRepository.findSpellByLevel(level);
+		List<Spell> spells = spellRepository.findSpellByLevel(level);
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		return nameOrder;
 	}
 
 	public List<Spell> getBySchool(String school) {
-		return spellRepository.findSpellBySchool(school);
+		List<Spell> spells = spellRepository.findSpellBySchool(school);
+		List<Spell> nameOrder = spells.stream().sorted(Comparator.comparing(Spell::getName))
+				.collect(Collectors.toList());
+		return nameOrder;
 	}
 
 	public Spell create(Spell spell) {
