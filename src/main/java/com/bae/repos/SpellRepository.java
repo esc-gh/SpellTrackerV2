@@ -15,6 +15,12 @@ public interface SpellRepository extends JpaRepository<Spell, Long> {
 
 	List<Spell> findSpellBySchool(String school);
 	
+	Spell getByName(String name);
+	
+	Spell getById(Long id);
+	
+	Boolean existsByName(String name);
+	
 //	Optional<Spell> existsByName(String Name);
 
 }

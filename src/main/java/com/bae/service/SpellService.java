@@ -15,7 +15,6 @@ import com.bae.exceptions.SpellNotFoundException;
 public class SpellService {
 	
 	private SpellRepository spellRepository;
-	private SpellService spellService;
 
 	@Autowired
 	public SpellService(SpellRepository spellRepository) {
@@ -83,10 +82,10 @@ public class SpellService {
 	}
 	
 	public Spell updateByName(String name, Spell spell) {
-		Spell updatedSpell = spellService.getByName(name);
-		Long id = updatedSpell.getId();
 		
-		if (spellRepository.existsById(id)) {
+		if (spellRepository.existsByName(name)) {
+			Spell updatedSpell = spellRepository.getByName(name);
+//			Long id = updatedSpell.getId();
 			Spell spellInDb = updatedSpell;
 			spellInDb.setName(spell.getName());
 			spellInDb.setLevel(spell.getLevel());
@@ -99,7 +98,7 @@ public class SpellService {
 	
 	public Spell updateById(Long id, Spell spell) {
 		if (spellRepository.existsById(id)) {
-			Spell spellInDb = spellService.getById(id);
+			Spell spellInDb = spellRepository.getById(id);
 			spellInDb.setLevel(spell.getLevel());
 			spellInDb.setSchool(spell.getSchool());
 			return spellRepository.save(spellInDb);
@@ -109,10 +108,9 @@ public class SpellService {
 	}
 	
 	public void deleteByName(String name) {
-		Spell updatedSpell = spellService.getByName(name);
-		Long id = updatedSpell.getId();
-		
-		if (spellRepository.existsById(id)) {
+		if (spellRepository.existsByName(name)) {
+			Spell updatedSpell = spellRepository.getByName(name);
+			Long id = updatedSpell.getId();
 			spellRepository.deleteById(id);
 		} else {
 			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
