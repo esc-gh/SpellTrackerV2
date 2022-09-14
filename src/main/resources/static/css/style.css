@@ -1,0 +1,15 @@
+#formDiv {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 25%;
+    border: solid 2px black;
+    display: inline-grid;
+    padding: 10px;
+}
+
+#resultsDiv {
+    border: 2px solid black;
+    width: 60%;
+    display: inline-grid;
+    /* margin-top: 2%; */
+}

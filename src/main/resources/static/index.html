@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>SpellTrackerV2</title>
+
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+
+        <!-- My CSS File -->
+        <link rel="stylesheet" href="./css/style.css"/>
+    </head>
+
+    <body onload="getAll()">
+
+        <div id="formDiv">
+            <form>
+                <div class="mb-3">
+                    <input type="text" id="nameInput" class="form-control" placeholder="Spell Name">
+                </div>
+                <div class="mb-3">
+                    <input type="number" id="levelInput" class="form-control" placeholder="Spell Level">
+                </div>
+                <div class="mb-3">
+                    <input type="text" id="schoolInput" class="form-control" placeholder="School of Magic">
+                </div>
+
+                <button type="button" id="createBtn" class="btn btn-outline-primary">Create</button>
+                <button type="button" id="updateBtn" class="btn btn-outline-secondary">Update</button>
+                <button type="button" id="deleteBtn" class="btn btn-outline-success">Delete</button>
+                <button type="button" id="getAllBtn" class="btn btn-outline-success">Show All</button>
+            </form>
+        </div>
+
+        <div id="resultsDiv"></div>
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+        <!-- Axios JS -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- My JS file -->
+        <script src="./js/main.js"></script>
+    </body>
+</html>
