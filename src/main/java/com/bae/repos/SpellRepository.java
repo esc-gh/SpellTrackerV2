@@ -20,6 +20,8 @@ public interface SpellRepository extends JpaRepository<Spell, Long> {
 	Spell getById(Long id);
 	
 	Boolean existsByName(String name);
+
+	void deleteByName(String name);
 	
 //	Optional<Spell> existsByName(String Name);
 

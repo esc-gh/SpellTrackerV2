@@ -109,9 +109,9 @@ public class SpellService {
 	
 	public void deleteByName(String name) {
 		if (spellRepository.existsByName(name)) {
-			Spell updatedSpell = spellRepository.getByName(name);
-			Long id = updatedSpell.getId();
-			spellRepository.deleteById(id);
+//			Spell deletedSpell = spellRepository.getByName(name);
+//			Long id = deletedSpell.getId();
+			spellRepository.deleteByName(name);
 		} else {
 			throw new SpellNotFoundException("Spell with name '" + name + "' cannot be found");
 		}
