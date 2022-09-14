@@ -3,6 +3,7 @@
  // SELECTORS//
 //////////////
 // DIVS
+let resultsDiv = document.querySelector("#resultsDiv");
 
 // INPUTS
 let nameInput = document.querySelector("#nameInput");
@@ -16,19 +17,88 @@ let deleteBtn = document.querySelector("#deleteBtn");
 let getAllBtn = document.querySelector("#getAllBtn");
 
 // FUNCTIONS
+
+// Print Results
+let printResults = (result) => {
+    let resultRow = document.createElement("tr");
+    resultRow.setAttribute("class", "tr");
+
+    let rowId = document.createElement("th");
+    rowId.setAttribute("class", "th");
+    rowId.textContent = result.id;
+
+    let rowName = document.createElement("td");
+    rowName.setAttribute("class", "td");
+    rowName.textContent = result.name;
+
+    let rowLevel = document.createElement("td");
+    rowLevel.setAttribute("class", "td");
+    rowLevel.textContent = result.level;
+
+    let rowSchool = document.createElement("td");
+    rowSchool.setAttribute("class", "td");
+    rowSchool.textContent = result.school;
+
+    let delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+    delBtn.type = "button";
+    delBtn.setAttribute("class", "btn btn-danger btn-sm");
+    delBtn.setAttribute("onclick", `del(${result.id})`);
+
+    let updBtn = document.createElement("button");
+    updBtn.textContent = "Update";
+    updBtn.type = "button";
+    updBtn.setAttribute("class", "btn btn-secondary stn-sm")
+    // updBtn.setAttribute("onclick", nameInput.innerHTML =result.name)
+    updBtn.setAttribute("onclick", `update(${result.id})`)
+
+    resultRow.appendChild(rowId);
+    resultRow.appendChild(rowName);
+    resultRow.appendChild(rowLevel);
+    resultRow.appendChild(rowSchool);
+    resultRow.appendChild(delBtn);
+    resultRow.appendChild(updBtn);
+    tableBody.appendChild(resultRow);
+
+    // delBtn.addEventListener("click", del(result.name))
+   }
+// let printResults = (result) => {
+//     let entryParent = document.createElement("div");
+//     entryParent.setAttribute("class", "entry-parent");
+
+//     let entryDiv = document.createElement("div");
+//     entryDiv.setAttribute("class", "entry-div");
+//     entryDiv.textContent = `${result.id} | ${result.name} | ${result.level} | ${result.school}`;
+
+//     let delBtn = document.createElement("button");
+//     delBtn.textContent = "Delete";
+//     delBtn.type = "button";
+//     delBtn.setAttribute("class", "btn btn-danger btn-sm");
+//     delBtn.setAttribute("onClick", `del(${result.name})`)
+
+//     entryParent.appendChild(entryDiv);
+//     entryParent.appendChild(delBtn);
+//     resultsDiv.appendChild(entryParent);
+// }
+
 // Get ALL
 let getAll = () => {
     axios.get("http://localhost:8080/spell/")
     .then(res => {
-        console.log(res.data);
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
     }).catch(err => console.log(err));
 }
 
 // Create
 let create = () => {
 
-    if(!validateInputs()){
-        alert("All fields need values!");
+    if(!validateCreate()){
+        alert("Create:\nAll fields need values!");
         return
     }
 
@@ -46,20 +116,22 @@ let create = () => {
 }
 
 // Update
-let update = () => {
+let update = (id) => {
 
-    if(!validateName()){
-        alert("Please enter the Name of the spell you wish to update!");
+    // nameInput.innerHTML = result.name;
+
+    if(!validateUpdate()){
+        alert("Update:\nPlease enter the new Level and School of this spell!");
         return
     }
 
     let obj = {
-        "name": "Wish",
-        "level": 5,
-        "school": "Conjuration"
+        "name": "placeholder",
+        "level": levelInput.value,
+        "school": schoolInput.value
     }
 
-    axios.put("http://localhost:8080/spell/${nameInput}", obj)
+    axios.put(`http://localhost:8080/spell?id=${id}`, obj)
     .then(res => {
         // console.log(res.data);
         getAll();
@@ -67,15 +139,15 @@ let update = () => {
 }
 
 // Delete
-let del = () => {
-    axios.delete("http://localhost:8080/spell/Wish")
+let del = (id) => {
+    axios.delete(`http://localhost:8080/spell?id=${id}`)
     .then(res => {
         // console.log(res.data);
         getAll();
     }).catch(err => console.log(err));
 }
 
-let validateInputs = () => {
+let validateCreate = () => {
     if (nameInput.value === "" || levelInput.value === "" || schoolInput.value === "") {
         return false;
     } else {
@@ -83,8 +155,8 @@ let validateInputs = () => {
     }
 }
 
-let validateName = () => {
-    if (nameInput.value === "") {
+let validateUpdate = () => {
+    if (levelInput.value === "" || schoolInput.value === "") {
         return false;
     } else {
         return true;
@@ -93,6 +165,6 @@ let validateName = () => {
 
 // EVENT LISTENERS
 createBtn.addEventListener("click", create);
-updateBtn.addEventListener("click", update);
-deleteBtn.addEventListener("click", del);
-getAllBtn.addEventListener("click", getAll)
+// updateBtn.addEventListener("click", update);
+// deleteBtn.addEventListener("click", del);
+// getAllBtn.addEventListener("click", getAll)

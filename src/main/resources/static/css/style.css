@@ -1,15 +1,55 @@
+#body {
+    background-color: pink;
+}
+
 #formDiv {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 1em;
+    box-shadow: inset yellow;
     margin-top: 2%;
     margin-left: 2%;
     width: 25%;
-    border: solid 2px black;
+    /* border: solid 2px black; */
     display: inline-grid;
     padding: 10px;
 }
 
 #resultsDiv {
+    background-color: rgb(108, 142, 236);
     border: 2px solid black;
+    border-width: 1px;
+    border-radius: 1em;
+    box-shadow: inset yellow;
+
     width: 60%;
+    margin-top: 2%;
+    margin-left: 2%;
+    padding: 10px;
     display: inline-grid;
     /* margin-top: 2%; */
 }
+
+.entry-parent {
+    padding-left: 30%;
+}
+
+.entry-div {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    height: 2em;
+    background-color: teal;
+    border-color: purple;
+    color: white;
+    margin-top: 4px;
+    width: 50%;
+    text-align: center;
+    display: inline-grid;
+}
+
+/* #levelInput {
+    display: inline;
+    width: 20%;
+} */
