@@ -1,13 +1,25 @@
 #body {
-    background-color: pink;
+    background-color: rgb(105, 117, 158);
+}
+
+#titleDiv {
+    background-color: black;
+    border: 2px solid white;
+    border-width: 2px;
+    /* border-radius: 1em; */
+    width: 87%;
+    display: inline-grid;
+    margin-left: 2%;
+    margin-top:2%;
+    color: white;
 }
 
 #formDiv {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.836);
     border: 2px solid black;
     border-width: 1px;
-    border-radius: 1em;
-    box-shadow: inset yellow;
+    border-radius: 0.5em;
+    /* box-shadow: inset yellow; */
     margin-top: 2%;
     margin-left: 2%;
     width: 25%;
@@ -29,6 +41,15 @@
     padding: 10px;
     display: inline-grid;
     /* margin-top: 2%; */
+}
+
+#tableTitle {
+    margin-left: 10%;
+    color: white;
+}
+
+#resultTable {
+    margin-left: 10%;
 }
 
 .entry-parent {

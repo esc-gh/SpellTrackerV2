@@ -19,6 +19,11 @@ let getAllBtn = document.querySelector("#getAllBtn");
 // FUNCTIONS
 
 // Print Results
+
+function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
 let printResults = (result) => {
     let resultRow = document.createElement("tr");
     resultRow.setAttribute("class", "tr");
@@ -29,7 +34,8 @@ let printResults = (result) => {
 
     let rowName = document.createElement("td");
     rowName.setAttribute("class", "td");
-    rowName.textContent = result.name;
+    rowName.setAttribute("class", "text-capitalize")
+    rowName.textContent = capitaliseFirstLetter(result.name);
 
     let rowLevel = document.createElement("td");
     rowLevel.setAttribute("class", "td");
@@ -43,12 +49,14 @@ let printResults = (result) => {
     delBtn.textContent = "Delete";
     delBtn.type = "button";
     delBtn.setAttribute("class", "btn btn-danger btn-sm");
+    delBtn.setAttribute("style", "color: black")
     delBtn.setAttribute("onclick", `del(${result.id})`);
 
     let updBtn = document.createElement("button");
     updBtn.textContent = "Update";
     updBtn.type = "button";
     updBtn.setAttribute("class", "btn btn-secondary stn-sm")
+    updBtn.setAttribute("style", "color: black")
     // updBtn.setAttribute("onclick", nameInput.innerHTML =result.name)
     updBtn.setAttribute("onclick", `update(${result.id})`)
 
@@ -62,6 +70,8 @@ let printResults = (result) => {
 
     // delBtn.addEventListener("click", del(result.name))
    }
+
+
 // let printResults = (result) => {
 //     let entryParent = document.createElement("div");
 //     entryParent.setAttribute("class", "entry-parent");
@@ -147,8 +157,10 @@ let create = () => {
         return
     }
 
+    let capitalName = capitaliseFirstLetter(nameInput.value);
+
     let obj = {
-        "name": nameInput.value,
+        "name": capitalName,
         "level": levelInput.value,
         "school": schoolInput.value
     }

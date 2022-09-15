@@ -16,16 +16,17 @@
 </head>
 
 <body onload="getAll()" id="body">
-    <div>
+    <div id="titleDiv" class="text-center">
         <h1>Welcome to SpellTrackerV2!</h1>
-        <h4>Please enter Spell information in the fields below:</h4>
+        <h4>A database tool for D&D 5e</h4>
     </div>
 
     <!-- <div id="UIDiv"> -->
     <div id="formDiv">
         <form>
+            <h6>Enter spell information:</h6>
             <div class="mb-3">
-                <input type="text" id="nameInput" class="form-control" placeholder="Spell Name">
+                <input type="text" id="nameInput" class="form-control text-capitalize" placeholder="Spell Name">
                 <small id="passwordHelpBlock" class="form-text text-muted">
                     Name only required for creating new Spell.
                 </small>
@@ -60,6 +61,7 @@
     <!-- </div> -->
 
     <div id="resultsDiv">
+        <h5 id="tableTitle">Spell Database:</h5>
         <table id="resultTable" class="table table-dark-striped">
             <thead>
                 <th scope="col">#ID</th>
