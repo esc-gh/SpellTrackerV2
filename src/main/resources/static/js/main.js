@@ -202,8 +202,6 @@ let create = () => {
     .then(res => {
         nameInput.value = "";
         levelInput.value = "";
-        $('schoolInput').val('Select School of Magic...').selectpicker('refresh')
-        // schoolInput.value = <option selected>Select School of Magic...</option>;
         getAll();
     }).catch(err => console.log(err));
 }
