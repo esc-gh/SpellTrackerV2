@@ -11,6 +11,8 @@ public interface SpellRepository extends JpaRepository<Spell, Long> {
 	
 	Optional<Spell> findSpellByName(String name);
 	
+	Optional<Spell> findSpellById(Long id);
+	
 	List<Spell> findSpellByLevel(int level);
 
 	List<Spell> findSpellBySchool(String school);

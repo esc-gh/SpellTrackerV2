@@ -103,6 +103,22 @@ public class SpellServiceUnitTest {
 
 		verify(spellRepository).findSpellByName(name);
 	}
+	
+//	@Test
+//	public void getByIdInvalidTest() {
+//		Long id = 17990381L;
+//
+//		when(spellRepository.findSpellById(id)).thenReturn(Optional.empty());
+//
+//		SpellNotFoundException snfe = Assertions.assertThrows(SpellNotFoundException.class, () -> {
+//			spellService.getById(id);
+//		});
+//
+//		String expected = "Spell with ID '" + id + "' cannot be found";
+//		assertThat(snfe.getMessage()).isEqualTo(expected);
+//
+//		verify(spellRepository).findSpellById(id);
+//	}
 
 	@Test
 	public void getByLevelTest() {
@@ -152,7 +168,7 @@ public class SpellServiceUnitTest {
 	}
 
 	@Test
-	public void updateSpellInvalidTest() {
+	public void updateSpellByNameInvalidTest() {
 		String name = "Afkjesgjskfj";
 
 		when(spellRepository.existsByName(name)).thenReturn(false);
@@ -168,6 +184,22 @@ public class SpellServiceUnitTest {
 	}
 
 	@Test
+	public void updateSpellByIdInvalidTest() {
+		Long id = 17990381L;
+
+		when(spellRepository.existsById(id)).thenReturn(false);
+
+		SpellNotFoundException snfe = Assertions.assertThrows(SpellNotFoundException.class, () -> {
+			spellService.updateById(id, expectedSpell);
+		});
+
+		String expected = "Spell with ID '" + id + "' cannot be found";
+		assertThat(snfe.getMessage()).isEqualTo(expected);
+
+		verify(spellRepository).existsById(id);
+	}
+	
+	@Test
 	public void deleteSpellTest() {
 		String name = expectedSpell.getName();
 		when(spellRepository.existsByName(name)).thenReturn(true);
@@ -181,7 +213,7 @@ public class SpellServiceUnitTest {
 	}
 
 	@Test
-	public void deleteSpellInvalidTest() {
+	public void deleteSpellByNameInvalidTest() {
 		String name = "Afkjesgjskfj";
 
 		when(spellRepository.existsByName(name)).thenReturn(false);
@@ -194,5 +226,21 @@ public class SpellServiceUnitTest {
 		assertThat(snfe.getMessage()).isEqualTo(expected);
 
 		verify(spellRepository).existsByName(name);
+	}
+	
+	@Test
+	public void deleteSpellByIdInvalidTest() {
+		Long id = 17990381L;
+
+		when(spellRepository.existsById(id)).thenReturn(false);
+
+		SpellNotFoundException snfe = Assertions.assertThrows(SpellNotFoundException.class, () -> {
+			spellService.deleteById(id);
+		});
+
+		String expected = "Spell with ID '" + id + "' cannot be found";
+		assertThat(snfe.getMessage()).isEqualTo(expected);
+
+		verify(spellRepository).existsById(id);
 	}
 }

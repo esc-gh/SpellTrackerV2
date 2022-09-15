@@ -160,7 +160,7 @@ public class SpellControllerWebIntegrationTest {
 		ResponseEntity<Spell> expected = new ResponseEntity<Spell>(updatedSpell, headers, HttpStatus.ACCEPTED);
 		when(spellService.updateByName(name, updatesToMake)).thenReturn(updatedSpell);
 
-		ResponseEntity<Spell> actual = controller.updateSpell(name, updatesToMake);
+		ResponseEntity<Spell> actual = controller.updateSpellByName(name, updatesToMake);
 		assertThat(expected).isEqualTo(actual);
 
 		verify(spellService).updateByName(name, updatesToMake);

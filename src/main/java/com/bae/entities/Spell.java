@@ -87,12 +87,25 @@ public class Spell {
 	
 	@Override
 	public String toString() {
-		return "Spell: " + name + ", lv: " + level + ", School: " + school;
+		return "ID: " + id + ", Spell: " + name + ", lv: " + level + ", School: " + school;
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, level, school);
+		return Objects.hash(id, level, name, school);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Spell other = (Spell) obj;
+		return Objects.equals(id, other.id) && Objects.equals(level, other.level) && Objects.equals(name, other.name)
+				&& Objects.equals(school, other.school);
 	}
 
 }

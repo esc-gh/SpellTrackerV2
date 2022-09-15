@@ -23,14 +23,14 @@ public class SpellClassTest {
 
 	@Test
 	public void toStringTest() {
-		String expected = "Spell: " + spell.getName() + ", lv: " + spell.getLevel() + ", School: " + spell.getSchool();
+		String expected = "ID: " + spell.getId() + ", Spell: " + spell.getName() + ", lv: " + spell.getLevel() + ", School: " + spell.getSchool();
 		assertThat(spell.toString()).isEqualTo(expected);
 	}
 
 	@Test
 	public void hashCodeTest() {
-		Object expected = Objects.hash(spell.getName(), spell.getLevel(), spell.getSchool());
-		assertThat(spell.hashCode()).isEqualTo(expected);
+		Spell spell2 = new Spell("Prismatic Wall", 9, "Abjuration");
+		assertThat(spell.hashCode()).isEqualTo(spell2.hashCode());
 	}
 
 	@Test

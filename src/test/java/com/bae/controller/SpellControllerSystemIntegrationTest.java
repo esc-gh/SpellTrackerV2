@@ -7,14 +7,15 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -25,8 +26,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.bae.entities.Spell;
 import com.bae.repos.SpellRepository;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 @AutoConfigureMockMvc
+@Sql(scripts = { "classpath:testSchema.sql", "classpath:testData.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles("test")
 @Transactional
 public class SpellControllerSystemIntegrationTest {
 
@@ -42,65 +45,70 @@ public class SpellControllerSystemIntegrationTest {
 	private List<Spell> spellsInDb;
 	private Spell expectedSpell;
 
-	@BeforeEach
-	public void init() {
+	@Test
+	public void getAllSpellsTest() throws Exception {
 		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
 				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
 		spellsInDb = new ArrayList<>();
 		spellsInDb.addAll(spellRepository.saveAll(spells));
-		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
-		System.out.println(expectedSpell);
-		System.out.println(spells);
-	}
-
-	@Test
-	public void getAllSpellsTest() throws Exception {
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/spell");
 
 		mockRequest.accept(MediaType.APPLICATION_JSON);
 
-		String spells = objectMapper.writeValueAsString(spellsInDb);
+		String spellsString = objectMapper.writeValueAsString(spellsInDb);
 
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
-		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spells);
+		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spellsString);
 
 		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contMatcher);
 	}
 
 	@Test
 	public void getAllSpellsByNameTest() throws Exception {
+		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
+				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
+		spellsInDb = new ArrayList<>();
+		spellsInDb.addAll(spellRepository.saveAll(spells));
 		List<Spell> nameOrder = spellsInDb.stream().sorted(Comparator.comparing(Spell::getName))
 				.collect(Collectors.toList());
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/spell/name");
 
 		mockRequest.accept(MediaType.APPLICATION_JSON);
 
-		String spells = objectMapper.writeValueAsString(nameOrder);
+		String spellsString = objectMapper.writeValueAsString(nameOrder);
 
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
-		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spells);
+		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spellsString);
 
 		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contMatcher);
 	}
 
 	@Test
 	public void getAllSpellsByLevelTest() throws Exception {
+		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
+				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
+		spellsInDb = new ArrayList<>();
+		spellsInDb.addAll(spellRepository.saveAll(spells));
 		List<Spell> levelOrder = spellsInDb.stream().sorted(Comparator.comparing(Spell::getLevel))
 				.collect(Collectors.toList());
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/spell/lv");
 
 		mockRequest.accept(MediaType.APPLICATION_JSON);
 
-		String spells = objectMapper.writeValueAsString(levelOrder);
+		String spellsString = objectMapper.writeValueAsString(levelOrder);
 
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
-		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spells);
+		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spellsString);
 
 		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contMatcher);
 	}
 
 	@Test
 	public void getAllSpellsBySchoolTest() throws Exception {
+		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
+				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
+		spellsInDb = new ArrayList<>();
+		spellsInDb.addAll(spellRepository.saveAll(spells));
 		List<Spell> schoolOrder = spellsInDb.stream().sorted(Comparator.comparing(Spell::getSchool))
 				.collect(Collectors.toList());
 
@@ -108,16 +116,21 @@ public class SpellControllerSystemIntegrationTest {
 
 		mockRequest.accept(MediaType.APPLICATION_JSON);
 
-		String spells = objectMapper.writeValueAsString(schoolOrder);
+		String spellsString = objectMapper.writeValueAsString(schoolOrder);
 
 		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isOk();
-		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spells);
+		ResultMatcher contMatcher = MockMvcResultMatchers.content().json(spellsString);
 
 		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contMatcher);
 	}
 
 	@Test
 	public void getSpellByNameTest() throws Exception {
+		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
+				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
+		spellsInDb = new ArrayList<>();
+		spellsInDb.addAll(spellRepository.saveAll(spells));
+		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
 		String name = expectedSpell.getName();
 		Spell spellToFind = spellRepository.getByName(name);
 
@@ -138,6 +151,11 @@ public class SpellControllerSystemIntegrationTest {
 	
 	@Test
 	public void getSpellByIdTest() throws Exception {
+		List<Spell> spells = List.of(new Spell(1L, "Wish", 9, "Conjuration"), new Spell(2L, "Blade Ward", 0, "Abjuration"),
+				new Spell(3L, "Prismatic Wall", 9, "Abjuration"));
+		spellsInDb = new ArrayList<>();
+		spellsInDb.addAll(spellRepository.saveAll(spells));
+		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
 		Long id = expectedSpell.getId();
 		Spell spellToFind = spellRepository.getById(id);
 
@@ -158,7 +176,7 @@ public class SpellControllerSystemIntegrationTest {
 
 	@Test
 	void updateSpellByNameTest() throws Exception {
-		// TODO
+		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
 		String name = expectedSpell.getName();
 		Spell updatesToMake = new Spell(expectedSpell.getName(), expectedSpell.getLevel() - 1, expectedSpell.getSchool());
 		Spell updatedSpell = new Spell(expectedSpell.getId(), expectedSpell.getName(), expectedSpell.getLevel() - 1,
@@ -178,9 +196,34 @@ public class SpellControllerSystemIntegrationTest {
 
 		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher);
 	}
+	
+	@Test
+	void updateSpellByIdTest() throws Exception {
+		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
+		Long id = expectedSpell.getId();
+		Spell updatesToMake = new Spell(expectedSpell.getName(), expectedSpell.getLevel() - 1, expectedSpell.getSchool());
+		Spell updatedSpell = new Spell(expectedSpell.getId(), expectedSpell.getName(), expectedSpell.getLevel() - 1,
+				expectedSpell.getSchool());
+
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "/spell?id=" + id);
+
+		mockRequest.contentType(MediaType.APPLICATION_JSON);
+
+		mockRequest.content(objectMapper.writeValueAsString(updatesToMake));
+
+		mockRequest.accept(MediaType.APPLICATION_JSON);
+
+		ResultMatcher statusMatcher = MockMvcResultMatchers.status().isAccepted();
+		ResultMatcher contentMatcher = MockMvcResultMatchers.content()
+				.json(objectMapper.writeValueAsString(updatedSpell));
+
+		mockMvc.perform(mockRequest).andExpect(statusMatcher).andExpect(contentMatcher);
+	}
+
 
 	@Test
 	void deleteSpellByNameTest() throws Exception {
+		expectedSpell = new Spell(3L, "Prismatic Wall", 9, "Abjuration");
 		String name = expectedSpell.getName();
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/spell/" + name);
@@ -192,7 +235,7 @@ public class SpellControllerSystemIntegrationTest {
 	
 	@Test
 	void deleteSpellByIDTest() throws Exception {
-		String id = "1";
+		Long id = 1L;
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/spell?id=" + id);
 
