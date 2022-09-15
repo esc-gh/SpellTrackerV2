@@ -92,7 +92,7 @@ public class SpellController {
 	}
 
 	@PutMapping("/{name}")
-	public ResponseEntity<Spell> updateSpell(@PathVariable("name") String name, @Valid @RequestBody Spell spell) {
+	public ResponseEntity<Spell> updateSpellByName(@PathVariable("name") String name, @Valid @RequestBody Spell spell) {
 		Spell updatedSpell = spellService.updateByName(name, spell);
 
 		HttpHeaders headers = new HttpHeaders();
@@ -102,7 +102,7 @@ public class SpellController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Spell> updateSpell(@RequestParam(value="id") Long id, @Valid @RequestBody Spell spell) {
+	public ResponseEntity<Spell> updateSpellById(@RequestParam(value="id") Long id, @Valid @RequestBody Spell spell) {
 		Spell updatedSpell = spellService.updateById(id, spell);
 
 		HttpHeaders headers = new HttpHeaders();

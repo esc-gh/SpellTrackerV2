@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpellTrackerV2</title>
+    <link rel="icon" type="image/x-icon" href="./imgs/d20-2.jpg">
+
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+
+    <!-- My CSS File -->
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body onload="getAll()" id="body">
+    <div id="titleDiv" class="text-center">
+        <h1>Welcome to SpellTrackerV2</h1>
+        <h4>A database tool for D&D 5e - now with added Dungeon Meowster!</h4>
+    </div>
+
+    <form>
+        <div id="formDiv">
+            <h6>Enter Spell information:</h6>
+            <div class="mb-3">
+                <input type="text" id="nameInput" class="form-control text-capitalize" placeholder="Spell Name">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Name only required for creating new Spell.
+                </small>
+            </div>
+            <div class="mb-3">
+                <input type="number" id="levelInput" class="form-control" placeholder="Spell Level">
+            </div>
+            <div class="input-group mb-3">
+                <select class="custom-select form-control" id="schoolInput">
+                    <option value = "Select School of Magic..." selected>Select School of Magic...</option>
+                    <option value="Abjuration">Abjuration</option>
+                    <option value="Conjuration">Conjuration</option>
+                    <option value="Divination">Divination</option>
+                    <option value="Enchantment">Enchantment</option>
+                    <option value="Evocation">Evocation</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Necromancy">Necromancy</option>
+                    <option value="Transmutation">Transmutation</option>
+                </select>
+            </div>
+            <button type="button" id="createBtn" class="btn btn-outline-success">Create</button>
+        </div>
+        <div id="sortDiv">
+            <h6>Sort all Spells by:</h6>
+
+            <button type="button" id="idBtn" class="btn btn-outline-primary">ID</button>
+            <button type="button" id="nameBtn" class="btn btn-outline-primary">Name</button>
+            <button type="button" id="levelBtn" class="btn btn-outline-primary">Level</button>
+            <button type="button" id="schoolBtn" class="btn btn-outline-primary">School</button>
+        </div>
+        <img id="meow" src="./imgs/dungeon_meowster.png" class="img-fluid float-left rounded">
+        <div id="findDiv">
+            <h6>Find Spells by:</h6>
+            <div class="input-group mb-3">
+                <input id="fNameInput" type="text" class="form-control text-capitalize" placeholder="Spell Name">
+                <div class="input-group-append">
+                    <button id="fNameBtn" class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input id="fLevelInput" type="number" class="form-control" placeholder="Spell Level">
+                <div class="input-group-append">
+                    <button id="fLevelBtn" class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <select class="custom-select form-control" id="fSchoolInput">
+                    <option selected>Select School of Magic...</option>
+                    <option value="Abjuration">Abjuration</option>
+                    <option value="Conjuration">Conjuration</option>
+                    <option value="Divination">Divination</option>
+                    <option value="Enchantment">Enchantment</option>
+                    <option value="Evocation">Evocation</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Necromancy">Necromancy</option>
+                    <option value="Transmutation">Transmutation</option>
+                </select>
+                <div class="input-group-append">
+                    <button id="fSchoolBtn" class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div id="resultsDiv" class="text-truncate">
+        <h5 id="tableTitle">Spell Database:</h5>
+        <table id="resultTable" class="table table-striped">
+            <thead>
+                <th scope="col">#ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">School</th>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <!-- Axios JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- My JS file -->
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

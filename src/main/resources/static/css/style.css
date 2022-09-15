@@ -1,0 +1,97 @@
+#body {
+    background-color: rgb(105, 117, 158);
+}
+
+#titleDiv {
+    background-color: black;
+    border: 2px solid white;
+    border-width: 2px;
+    width: 80%;
+    display: inline-grid;
+    margin-left: 10%;
+    margin-top:2%;
+    color: white;
+}
+
+#formDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 0.5em;
+    margin-top: 2%;
+    margin-left: 10%;
+    width: 25%;
+    display: inline-grid;
+    padding: 10px;
+}
+
+#sortDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 0.5em;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 10%;
+    display: inline-grid;
+    padding: 10px;
+}
+#meow {
+    margin-top: 2%;
+    margin-left: 2%;
+    display: inline-grid;
+    position: absolute;
+    width: 14%;
+}
+
+#findDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 0.5em;
+    margin-top: 2%;
+    margin-left: 18%;
+    width: 24.5%;
+    display: inline-grid;
+    padding: 10px;
+}
+
+#resultsDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 1em;
+    box-shadow: inset yellow;
+    width: 79.8%;
+    margin-top: 2%;
+    margin-left: 10%;
+    padding: 10px;
+    display: inline-grid;
+}
+
+#tableTitle {
+    margin-left: 10%;
+    color: black;
+}
+
+#resultTable {
+    margin-left: 10%;
+}
+
+.entry-parent {
+    padding-left: 30%;
+}
+
+.entry-div {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    height: 2em;
+    background-color: teal;
+    border-color: purple;
+    color: white;
+    margin-top: 4px;
+    width: 50%;
+    text-align: center;
+    display: inline-grid;
+}
