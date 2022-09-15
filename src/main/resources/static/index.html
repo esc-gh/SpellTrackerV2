@@ -1,61 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>SpellTrackerV2</title>
 
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpellTrackerV2</title>
 
-        <!-- My CSS File -->
-        <link rel="stylesheet" href="./css/style.css"/>
-    </head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
-    <body onload="getAll()" id="body">
-        <div>
-            <h1>Welcome to SpellTrackerV2!</h1>
-            <h4>Please enter Spell information in the fields below:</h4>
-        </div>
-        
+    <!-- My CSS File -->
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
 
-        <div id="formDiv">
-            <form>
-                <div class="mb-3">
-                    <input type="text" id="nameInput" class="form-control" placeholder="Spell Name">
-                </div>
-                <div class="mb-3">
-                    <input type="number" id="levelInput" class="form-control" placeholder="Spell Level">
-                </div>
-                <div class="mb-3">
-                    <input type="text" id="schoolInput" class="form-control" placeholder="School of Magic">
-                </div>
+<body onload="getAll()" id="body">
+    <div>
+        <h1>Welcome to SpellTrackerV2!</h1>
+        <h4>Please enter Spell information in the fields below:</h4>
+    </div>
 
-                <button type="button" id="createBtn" class="btn btn-outline-primary">Create</button>
-            </form>
-        </div>
+    <!-- <div id="UIDiv"> -->
+    <div id="formDiv">
+        <form>
+            <div class="mb-3">
+                <input type="text" id="nameInput" class="form-control" placeholder="Spell Name">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Name only required for creating new Spell.
+                </small>
+            </div>
+            <div class="mb-3">
+                <input type="number" id="levelInput" class="form-control" placeholder="Spell Level">
+            </div>
+            <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend">
+                        <label class="input-group-text" for="schoolInput">School of Magic</label>
+                      </div> -->
+                <select class="custom-select form-control" id="schoolInput">
+                    <option selected>Select School of Magic...</option>
+                    <option value="Abjuration">Abjuration</option>
+                    <option value="Conjuration">Conjuration</option>
+                    <option value="Divination">Divination</option>
+                    <option value="Enchantment">Enchantment</option>
+                    <option value="Evocation">Evocation</option>
+                    <option value="Illusion">Illusion</option>
+                    <option value="Necromancy">Necromancy</option>
+                    <option value="Transmutation">Transmutation</option>
+                </select>
+                <!-- <input type="text" id="schoolInput" class="form-control" placeholder="School of Magic"> -->
+            </div>
+            <button type="button" id="createBtn" class="btn btn-outline-success">Create</button>
 
-        <div id="resultsDiv">
-            <table id="resultTable" class="table table-dark-striped">
-                <thead>
-                    <th scope="col">#ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Level</th>
-                    <th scope="col">School</th>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
-        </div>
+        </form>
+    </div>
+    <!-- <div>
+            <h6>Sort Spell list:</h6>
+        </div> -->
+    <!-- </div> -->
 
-        <!-- JavaScript Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <div id="resultsDiv">
+        <table id="resultTable" class="table table-dark-striped">
+            <thead>
+                <th scope="col">#ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">School</th>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
 
-        <!-- Axios JS -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div id="formDiv">
+        <!-- <form> -->
+            <div>
+                <h6>Sort list by:</h6>
 
-        <!-- My JS file -->
-        <script src="./js/main.js"></script>
-    </body>
+                <button type="button" id="idBtn" class="btn btn-outline-primary">ID</button>
+                <button type="button" id="nameBtn" class="btn btn-outline-primary">Name</button>
+                <button type="button" id="levelBtn" class="btn btn-outline-primary">Level</button>
+                <button type="button" id="schoolBtn" class="btn btn-outline-primary">School</button>
+            </div>
+
+        <!-- </form> -->
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <!-- Axios JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- My JS file -->
+    <script src="./js/main.js"></script>
+</body>
+
 </html>

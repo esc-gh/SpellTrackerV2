@@ -93,12 +93,57 @@ let getAll = () => {
         }
     }).catch(err => console.log(err));
 }
+let getAllByName = () => {
+    axios.get("http://localhost:8080/spell/name")
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
+    }).catch(err => console.log(err));
+}
+let getAllBySchool = () => {
+    axios.get("http://localhost:8080/spell/school")
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
+    }).catch(err => console.log(err));
+}
+
+let getAllByLevel = () => {
+    axios.get("http://localhost:8080/spell/lv")
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
+    }).catch(err => console.log(err));
+    
+}
 
 // Create
 let create = () => {
 
     if(!validateCreate()){
         alert("Create:\nAll fields need values!");
+        return
+    }
+
+    if(!validateLevel()){
+        alert("Spell level:\nMust be between 0-9!");
+        return
+    }
+
+    if(!validateSchool()){
+        alert("School of Magic:\nPlease select an option!");
         return
     }
 
@@ -122,6 +167,16 @@ let update = (id) => {
 
     if(!validateUpdate()){
         alert("Update:\nPlease enter the new Level and School of this spell!");
+        return
+    }
+
+    if(!validateLevel()){
+        alert("Spell level:\nMust be between 0-9!");
+        return
+    }
+
+    if(!validateSchool()){
+        alert("School of Magic:\nPlease select an option!");
         return
     }
 
@@ -163,8 +218,28 @@ let validateUpdate = () => {
     }
 }
 
+let validateLevel = () => {
+    if (levelInput.value > 9 || levelInput.value < 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+let validateSchool = () => {
+    if (schoolInput.value === "Select School of Magic...") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // EVENT LISTENERS
 createBtn.addEventListener("click", create);
+idBtn.addEventListener("click", getAll);
+nameBtn.addEventListener("click", getAllByName);
+levelBtn.addEventListener("click", getAllByLevel);
+schoolBtn.addEventListener("click", getAllBySchool);
 // updateBtn.addEventListener("click", update);
 // deleteBtn.addEventListener("click", del);
 // getAllBtn.addEventListener("click", getAll)
