@@ -65,6 +65,13 @@ public class SpellController {
 		return response;
 	}
 
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Spell> getSpellById(@PathVariable("id") Long id) {
+		Spell savedSpell = spellService.getById(id);
+		ResponseEntity<Spell> response = ResponseEntity.status(HttpStatus.OK).body(savedSpell);
+		return response;
+	}
+	
 	@GetMapping("/lv/{level}")
 	public ResponseEntity<List<Spell>> getSpellByLevel(@PathVariable("level") int level) {
 		List<Spell> savedSpell = spellService.getByLevel(level);
