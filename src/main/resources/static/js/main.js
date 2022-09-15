@@ -9,12 +9,18 @@ let resultsDiv = document.querySelector("#resultsDiv");
 let nameInput = document.querySelector("#nameInput");
 let levelInput = document.querySelector("#levelInput");
 let schoolInput = document.querySelector("#schoolInput");
+let fNameInput = document.querySelector("#fNameInput")
+let fLevelInput = document.querySelector("#fLevelInput")
+let fSchoolInput = document.querySelector("#fSchoolInput")
 
 // BUTTONS
 let createBtn = document.querySelector("#createBtn");
 let updateBtn = document.querySelector("#updateBtn");
 let deleteBtn = document.querySelector("#deleteBtn");
 let getAllBtn = document.querySelector("#getAllBtn");
+let fNameBtn = document.querySelector("#fNameBtn");
+let fLevelBtn = document.querySelector("#fLevelBtn");
+let fSchoolBtn = document.querySelector("#fSchoolBtn");
 
 // FUNCTIONS
 
@@ -57,7 +63,6 @@ let printResults = (result) => {
     updBtn.type = "button";
     updBtn.setAttribute("class", "btn btn-secondary stn-sm")
     updBtn.setAttribute("style", "color: black")
-    // updBtn.setAttribute("onclick", nameInput.innerHTML =result.name)
     updBtn.setAttribute("onclick", `update(${result.id})`)
 
     resultRow.appendChild(rowId);
@@ -67,29 +72,7 @@ let printResults = (result) => {
     resultRow.appendChild(delBtn);
     resultRow.appendChild(updBtn);
     tableBody.appendChild(resultRow);
-
-    // delBtn.addEventListener("click", del(result.name))
    }
-
-
-// let printResults = (result) => {
-//     let entryParent = document.createElement("div");
-//     entryParent.setAttribute("class", "entry-parent");
-
-//     let entryDiv = document.createElement("div");
-//     entryDiv.setAttribute("class", "entry-div");
-//     entryDiv.textContent = `${result.id} | ${result.name} | ${result.level} | ${result.school}`;
-
-//     let delBtn = document.createElement("button");
-//     delBtn.textContent = "Delete";
-//     delBtn.type = "button";
-//     delBtn.setAttribute("class", "btn btn-danger btn-sm");
-//     delBtn.setAttribute("onClick", `del(${result.name})`)
-
-//     entryParent.appendChild(entryDiv);
-//     entryParent.appendChild(delBtn);
-//     resultsDiv.appendChild(entryParent);
-// }
 
 // Get ALL
 let getAll = () => {
@@ -135,8 +118,58 @@ let getAllByLevel = () => {
         for (let result of results) {
             printResults(result);
         }
-    }).catch(err => console.log(err));
-    
+    }).catch(err => console.log(err));    
+}
+
+let findByName = () => {
+    if(!validateFName()){
+        alert("Spell name:\nPlease enter a spell name!");
+        return
+    }
+
+    let capitalFName = capitaliseFirstLetter(fNameInput.value);
+
+    axios.get(`http://localhost:8080/spell/${capitalFName}`)
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        printResults(res.data)
+
+    }).catch(err => console.log(err));    
+}
+
+let findByLevel = () => {
+    if(!validateFLevel()){
+        alert("Spell level:\nMust be between 0-9!");
+        return
+    }
+
+    axios.get(`http://localhost:8080/spell/lv/${fLevelInput.value}`)
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
+    }).catch(err => console.log(err));    
+}
+
+let findBySchool = () => {
+    if(!validateFSchool()){
+        alert("School of Magic:\nPlease select an option!");
+        return
+    }
+
+    axios.get(`http://localhost:8080/spell/school/${fSchoolInput.value}`)
+    .then(res => {
+        tableBody.innerHTML = "";
+
+        let results = res.data;
+        for (let result of results) {
+            printResults(result);
+        }
+    }).catch(err => console.log(err));    
 }
 
 // Create
@@ -167,15 +200,16 @@ let create = () => {
 
     axios.post("http://localhost:8080/spell", obj)
     .then(res => {
-        // console.log(res.data);
+        nameInput.value = "";
+        levelInput.value = "";
+        $('schoolInput').val('Select School of Magic...').selectpicker('refresh')
+        // schoolInput.value = <option selected>Select School of Magic...</option>;
         getAll();
     }).catch(err => console.log(err));
 }
 
 // Update
 let update = (id) => {
-
-    // nameInput.innerHTML = result.name;
 
     if(!validateUpdate()){
         alert("Update:\nPlease enter the new Level and School of this spell!");
@@ -230,8 +264,24 @@ let validateUpdate = () => {
     }
 }
 
+let validateFName = () => {
+    if (fNameInput.value === "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 let validateLevel = () => {
     if (levelInput.value > 9 || levelInput.value < 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+let validateFLevel = () => {
+    if (fLevelInput.value > 9 || fLevelInput.value < 0) {
         return false;
     } else {
         return true;
@@ -246,12 +296,20 @@ let validateSchool = () => {
     }
 }
 
+let validateFSchool = () => {
+    if (fSchoolInput.value === "Select School of Magic...") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // EVENT LISTENERS
 createBtn.addEventListener("click", create);
 idBtn.addEventListener("click", getAll);
 nameBtn.addEventListener("click", getAllByName);
 levelBtn.addEventListener("click", getAllByLevel);
 schoolBtn.addEventListener("click", getAllBySchool);
-// updateBtn.addEventListener("click", update);
-// deleteBtn.addEventListener("click", del);
-// getAllBtn.addEventListener("click", getAll)
+fNameBtn.addEventListener("click", findByName);
+fLevelBtn.addEventListener("click", findByLevel);
+fSchoolBtn.addEventListener("click", findBySchool);

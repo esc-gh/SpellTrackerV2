@@ -6,10 +6,9 @@
     background-color: black;
     border: 2px solid white;
     border-width: 2px;
-    /* border-radius: 1em; */
-    width: 87%;
+    width: 80%;
     display: inline-grid;
-    margin-left: 2%;
+    margin-left: 10%;
     margin-top:2%;
     color: white;
 }
@@ -19,33 +18,60 @@
     border: 2px solid black;
     border-width: 1px;
     border-radius: 0.5em;
-    /* box-shadow: inset yellow; */
+    margin-top: 2%;
+    margin-left: 10%;
+    width: 25%;
+    display: inline-grid;
+    padding: 10px;
+}
+
+#sortDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 0.5em;
     margin-top: 2%;
     margin-left: 2%;
-    width: 25%;
-    /* border: solid 2px black; */
+    width: 10%;
+    display: inline-grid;
+    padding: 10px;
+}
+#meow {
+    margin-top: 2%;
+    margin-left: 2%;
+    display: inline-grid;
+    position: absolute;
+    width: 14%;
+}
+
+#findDiv {
+    background-color: rgba(255, 255, 255, 0.836);
+    border: 2px solid black;
+    border-width: 1px;
+    border-radius: 0.5em;
+    margin-top: 2%;
+    margin-left: 18%;
+    width: 24.5%;
     display: inline-grid;
     padding: 10px;
 }
 
 #resultsDiv {
-    background-color: rgb(108, 142, 236);
+    background-color: rgba(255, 255, 255, 0.836);
     border: 2px solid black;
     border-width: 1px;
     border-radius: 1em;
     box-shadow: inset yellow;
-
-    width: 60%;
+    width: 79.8%;
     margin-top: 2%;
-    margin-left: 2%;
+    margin-left: 10%;
     padding: 10px;
     display: inline-grid;
-    /* margin-top: 2%; */
 }
 
 #tableTitle {
     margin-left: 10%;
-    color: white;
+    color: black;
 }
 
 #resultTable {
@@ -69,8 +95,3 @@
     text-align: center;
     display: inline-grid;
 }
-
-/* #levelInput {
-    display: inline;
-    width: 20%;
-} */
