@@ -75,73 +75,71 @@ In this section we will go through the Postman requests which can be sent and th
 
 A simple GET request to show the database starting empty
 
-![PM Empty DB Start](https://user-images.githubusercontent.com/94961352/152522539-0841f820-def6-40e8-a990-91f6c8026536.png)
+![PM Empty DB Start]()
 
 ### POST to create new spell - */spell*
 
 A request sent with the three required fields to construct a new Spell object in the database
 
-![PM POST Spell](https://user-images.githubusercontent.com/94961352/152523237-01611016-1003-4d49-a9f5-3d5a4fdd84f3.png)
+![PM POST Spell]()
 
 This request also has an extra header showing the new spell's location for finding it by name
 
-![PM POST Spell Headers](https://user-images.githubusercontent.com/94961352/152523368-634c505f-e490-4941-96e3-cf96412a0e55.png)
+![PM POST Spell Headers]()
 
 ### PUT to update spell info - */spell/{name}*
 
 Updates the level and school of the spell using the name primary key as the address. The response body contains the updated entry
 
-![PM PUT Spell](https://user-images.githubusercontent.com/94961352/152523723-9399aa17-c723-4c40-88b1-528a0e1077a4.png)
+![PM PUT Spell]()
 
 ### DELETE to remove spell - */spell/{name}*
 
 Removes spell entry from database, returns empty response body on success
 
-![PM DEL Spell](https://user-images.githubusercontent.com/94961352/152524218-24b5a992-267f-4f30-9ffa-2ad095bf9796.png)
+![PM DEL Spell]()
 
 ### GET by name - */spell/{name}*
 
 Find a spell from its name (PK)
 
-![PM GET by name](https://user-images.githubusercontent.com/94961352/152524768-940977cc-c57d-44c7-a68a-1680d42ae3d5.png)
+![PM GET by name]()
 
 ### GET by level - */spell/lv/{level}*
 
 Returns a list with all spells of the corresponding level
 
-![PM GET by lv](https://user-images.githubusercontent.com/94961352/152525718-a9bc668f-c256-4520-8a60-6e7c3a8e8c6f.png)
+![PM GET by lv]()
 
 ### GET by school - */spell/school/{school}*
 
 Returns a list with all spells of the corresponding school
 
-![PM GET by school](https://user-images.githubusercontent.com/94961352/152525831-3ec88296-8ce1-4d73-869d-200738875fa9.png)
+![PM GET by school]()
 
 ### Custom Exception to any request by - */spell/{name}*
 
 When no entry can found with a matching name (PK), this exception is returned
 
-![PM Custom Exception](https://user-images.githubusercontent.com/94961352/152524528-396ecf8c-26bc-4592-93f6-14f7a323d2eb.png)
+![PM Custom Exception]()
 
 ### GET All spells - */spell* or */spell/name*
 
 Returns a response with all spells, listed alphabetically by name
 
-More data entries have been added at this point, refer to <a href="#persistent-database">Persistent Database</a> section)
-
-![PM Get ALL by name](https://user-images.githubusercontent.com/94961352/152525206-a6d0ac2d-adde-4819-8c90-e0bd77923ee8.png)
+![PM Get ALL by name]()
 
 ### GET All spells by level - */spell/lv*
 
 Returns a list of all spells sorted in ascending numerical order of level, then alphabetically
 
-![PM GET ALL by lv](https://user-images.githubusercontent.com/94961352/152525399-161a4cda-4d36-49a3-8fba-89531ba114b2.png)
+![PM GET ALL by lv]()
 
 ### GET All spells by school - */spell/school*
 
 Returns a list of all spells sorted alphabetically by school, then name
 
-![PM GET ALL by school](https://user-images.githubusercontent.com/94961352/152525525-3b80a12a-4087-446c-838b-fafa4fb893fd.png)
+![PM GET ALL by school]()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -149,43 +147,39 @@ Returns a list of all spells sorted alphabetically by school, then name
 
 This image shows the database used for the screenshots in this README.md, in MySQL and as a Postman GET request
 
-![SQL PM GET All](https://user-images.githubusercontent.com/94961352/152526104-86c86f79-bc16-49a0-a8eb-142dad466601.png)
+![SQL PM GET All]()
 
 In this screenshot please note the Spring Boot API running and all table data being shown in MySQL:
 
-![Persistent DB start](https://user-images.githubusercontent.com/94961352/152520044-337d354e-e779-469e-a245-e141e5793151.png)
+![Persistent DB start]()
 
 Here you are able to note that the API has been stopped and a fresh query in MySQL still returns the same data, demonstrating persistence:
 
-![Persistent DB end](https://user-images.githubusercontent.com/94961352/152520068-83ec9ae9-179b-4e44-a5c2-381a6ad60e12.png)
+![Persistent DB end]()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Test Results & Coverage
 
-48 tests are run, none of which fail:
+51 tests are run, none of which fail:
 
-![JUnitTests](https://user-images.githubusercontent.com/94961352/152520138-0d5d4170-4e3b-4edd-ba29-469c5571f062.png)
+![JUnitTests]()
 
-This provided testing coverage for */src/main/java/* of **94%**:
+This provided testing coverage for */src/main/java/* of **95.7%**:
 
-![TestCoverage](https://user-images.githubusercontent.com/94961352/152520148-8e898ebc-83bd-418c-a4f2-f745b73522a8.png)
+![TestCoverage]()
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Jira Board
 
-Please find a link to this project's Jira Board [here](https://joshoc.atlassian.net/jira/software/projects/QFP/boards/2)!
+Please find a link to this project's Jira Board [here](https://syca.atlassian.net/jira/software/projects/STV2/boards/2)!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Special Thanks
 
-This course has been a massively positive experience over the last three months.
-
-I would like to thank all of the QA trainers who have helped and guided me, they have been great. With regards to this final project, I would like to highlight Morgan Walsh in particular for always being happy to field questions and impart his knowledge.
-
-It could never have been as great without all of the other students. It's been a pleasure getting to know the cohort of DfESW7 and I wish all of them the very best in their future endeavours!
+A special thanks goes to my colleagues on the course and all of the QA trainers so far. They have all helped to make this a rewarding and enjoyable experience!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
