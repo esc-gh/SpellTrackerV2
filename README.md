@@ -75,71 +75,77 @@ In this section we will go through the Postman requests which can be sent and th
 
 A simple GET request to show the database starting empty
 
-![PM Empty DB Start]()
+![PM Empty DB Start](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/Empty.png)
 
 ### POST to create new spell - */spell*
 
 A request sent with the three required fields to construct a new Spell object in the database
 
-![PM POST Spell]()
+![PM POST Spell](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/Post.png)
 
 This request also has an extra header showing the new spell's location for finding it by name
 
-![PM POST Spell Headers]()
+![PM POST Spell Headers](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/PostHeaders.png)
 
-### PUT to update spell info - */spell/{name}*
+### PUT to update spell info by ID - */spell?id={id}*
 
-Updates the level and school of the spell using the name primary key as the address. The response body contains the updated entry
+Updates the level and school of the spell using the ID primary key as the address. The response body contains the updated entry
 
-![PM PUT Spell]()
+![PM PUT Spell](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/UpdateById.png)
 
-### DELETE to remove spell - */spell/{name}*
+### PUT to update spell info by Name - */spell/{name}*
+
+Updates the level and school of the spell using the name as the address. The response body contains the updated entry
+
+![PM PUT Spell](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/UpdateByName.png)
+
+### DELETE to remove spell by ID - */spell?id={id}*
 
 Removes spell entry from database, returns empty response body on success
 
-![PM DEL Spell]()
+![PM DEL Spell](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/DeleteById.png)
 
 ### GET by name - */spell/{name}*
 
-Find a spell from its name (PK)
+Find a spell from its name
 
-![PM GET by name]()
+![PM GET by name](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetByName.png)
 
 ### GET by level - */spell/lv/{level}*
 
 Returns a list with all spells of the corresponding level
 
-![PM GET by lv]()
+![PM GET by lv](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetByLevel.png)
 
 ### GET by school - */spell/school/{school}*
 
 Returns a list with all spells of the corresponding school
 
-![PM GET by school]()
+![PM GET by school](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetBySchool.png)
 
 ### Custom Exception to any request by - */spell/{name}*
 
-When no entry can found with a matching name (PK), this exception is returned
+When no entry can found with a matching name, this exception is returned
 
-![PM Custom Exception]()
+![PM Custom Exception](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/SNFE.png)
 
 ### GET All spells - */spell* or */spell/name*
 
 Returns a response with all spells, listed alphabetically by name
 
-![PM Get ALL by name]()
+![PM Get ALL by name](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetAll.png)
 
 ### GET All spells by level - */spell/lv*
 
 Returns a list of all spells sorted in ascending numerical order of level, then alphabetically
 
-![PM GET ALL by lv]()
+![PM GET ALL by lv](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetAllByLevel.png)
 
 ### GET All spells by school - */spell/school*
 
 Returns a list of all spells sorted alphabetically by school, then name
 
-![PM GET ALL by school]()
+![PM GET ALL by school](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/GetAllBySchool.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -163,11 +169,11 @@ Here you are able to note that the API has been stopped and a fresh query in MyS
 
 51 tests are run, none of which fail:
 
-![JUnitTests]()
+![JUnitTests](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/Tests.png)
 
 This provided testing coverage for */src/main/java/* of **95.7%**:
 
-![TestCoverage]()
+![TestCoverage](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/TestCoverage.png)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
