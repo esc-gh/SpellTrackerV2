@@ -85,7 +85,7 @@ A request sent with the three required fields to construct a new Spell object in
 
 This request also has an extra header showing the new spell's location for finding it by name
 
-![PM POST Spell Headers](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/PostHeaders.png)
+![PM POST Spell Headers](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/postman/PostHeader.png)
 
 ### PUT to update spell info by ID - */spell?id={id}*
 
@@ -177,6 +177,14 @@ This provided testing coverage for */src/main/java/* of **95.7%**:
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Front-End
+
+A quick look at the design of the application's front-end.
+
+![Front-End](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/FrontEnd.png)
+
+A simplistic UI for adding spells to the database, displaying all entries as a table, showing all Spells sorted by ID/Name/Level/School and finding Spells by their unique name or by all Spells of a level or School. 
 
 ## Jira Board
 
