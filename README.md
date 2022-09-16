@@ -7,8 +7,9 @@
     <li><a href="#how-i-expected-the-challenge-to-go">How I expected the challenge to go</a></li>
     <li><a href="#what-went-well--what-went-not-so-well">What went well & not-so-well</a></li>
     <li><a href="#possible-improvements-for-future-revisions-of-the-project">Possible improvements for future revisions of the project</a></li>
+    <li><a href="#what-do-you-need-to-recreate-this-project">What do you need to recreate this project</a></li>
+    <li><a href="#front-end">Front-end</a></li>
     <li><a href="#postman--api-interactions">Postman & API interactions</a></li>
-    <li><a href="#persistent-database">Persistent database</a></li>
     <li><a href="#test-results--coverage">Test results & coverage</a></li>
     <li><a href="#jira-board">Jira board</a></li>
     <li><a href="#special-thanks">Special thanks</a></li>
@@ -64,6 +65,32 @@ There are multiple approaches which could be taken to improve upon this project:
 * Improving the front-end UI as experience grows
 * Implement new functionality into the front-end
 * Work to make sure the UX is good
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## What do you need to recreate this project?
+
+This API was written in Java and made in Eclipse as a Spring Starter project which utilises Maven.
+
+THe front-end was made in Visual Studio Code for the HTML, CSS and JavaScript files. It uses Bootstrap elements.
+
+In order to continue or expand the work you would need to fork and clone the repository on GitHub.
+
+On GitHub a feature-branch model has been used with five feature branches stemming from the dev branch to date.
+
+Active testing of functionality was done through Postman. Automated testing was set up with JUnit and Mockito.
+
+The final application build has been compiled into a .jar file found in the repo.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Front-End
+
+A quick look at the design of the application's front-end.
+
+![Front-End](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/FrontEnd.png)
+
+A simplistic UI for adding spells to the database, displaying all entries as a table, showing all Spells sorted by ID/Name/Level/School and finding Spells by their unique name or by all Spells of a level or School. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -149,22 +176,6 @@ Returns a list of all spells sorted alphabetically by school, then name
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Persistent Database
-
-This image shows the database used for the screenshots in this README.md, in MySQL and as a Postman GET request
-
-![SQL PM GET All]()
-
-In this screenshot please note the Spring Boot API running and all table data being shown in MySQL:
-
-![Persistent DB start]()
-
-Here you are able to note that the API has been stopped and a fresh query in MySQL still returns the same data, demonstrating persistence:
-
-![Persistent DB end]()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ## Test Results & Coverage
 
 51 tests are run, none of which fail:
@@ -177,14 +188,6 @@ This provided testing coverage for */src/main/java/* of **95.7%**:
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-## Front-End
-
-A quick look at the design of the application's front-end.
-
-![Front-End](https://github.com/esc-gh/SpellTrackerV2/blob/dev/src/main/resources/images/FrontEnd.png)
-
-A simplistic UI for adding spells to the database, displaying all entries as a table, showing all Spells sorted by ID/Name/Level/School and finding Spells by their unique name or by all Spells of a level or School. 
 
 ## Jira Board
 
